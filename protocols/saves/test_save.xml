@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<flaw_list>
+	<flaw>
+		<number>1</number>
+		<text>dummy text</text>
+		<level>1</level>
+		<photoPaths></photoPaths>
+		<bold>false</bold>
+		<noPhotos>false</noPhotos>
+	</flaw>
+</flaw_list>

@@ -1,0 +1,87 @@
+﻿<Window x:Class="protocols.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:protocols"
+        xmlns:viewmodel="clr-namespace:protocols.ViewModel"
+        xmlns:model="clr-namespace:protocols.Model"
+        xmlns:view="clr-namespace:protocols.View"
+        mc:Ignorable="d"
+        Title="Protocols" Height="420" Width="800" MinWidth="485" MaxWidth="800">
+    <Window.DataContext>
+        <viewmodel:MainWindowVM/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type model:FlawM}">
+            <view:FlawV />
+        </DataTemplate>
+    </Window.Resources>
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Menu">
+                <MenuItem Header="Generate file" Command="local:CustomCommands.CreateTestDocx">
+                    <MenuItem.CommandBindings>
+                        <CommandBinding Command="local:CustomCommands.CreateTestDocx" CanExecute="CreateNewTest_CanExecute" Executed="CreateNewTest_Executed"/>
+                    </MenuItem.CommandBindings>
+                </MenuItem>
+                <MenuItem Header="Add flaw" Command="local:CustomCommands.AddFlaw">
+                    <MenuItem.CommandBindings>
+                        <CommandBinding Command="local:CustomCommands.AddFlaw" CanExecute="AddFlaw_CanExecute" Executed="AddFlaw_Executed"/>
+                    </MenuItem.CommandBindings>
+                </MenuItem>
+                <!--<MenuItem Header="Save" Command="local:CustomCommands.SaveProject">
+                    <MenuItem.CommandBindings>
+                        <CommandBinding Command="local:CustomCommands.SaveProject" CanExecute="SaveProject_CanExecute" Executed="SaveProject_Executed"/>
+                    </MenuItem.CommandBindings>
+                </MenuItem>-->
+
+            </MenuItem>
+        </Menu>
+        <Border x:Name="topBorder" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" Width="Auto" DockPanel.Dock="Top" Margin="0,0,17,0">
+            <Grid Margin="5,10,5,10" Width="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" MinWidth="35"/>
+                    <ColumnDefinition Width="Auto" MinWidth="200"/>
+                    <ColumnDefinition Width="2*" MinWidth="60"/>
+                    <ColumnDefinition Width="4*" MinWidth="80" />
+                    <ColumnDefinition Width="2*" MinWidth="85"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Lp" FontSize="12" Margin="5,0,5,0" Grid.Column="0" />
+                <Label Content="Usterka" FontSize="12" Margin="5,0,5,0" Grid.Column="1" />
+                <Label Content="Poziom" FontSize="12" Margin="5,0,5,0" Grid.Column="2" />
+                <Label Content="Zdjęcie" FontSize="12" Margin="5,0,5,0" Grid.Column="3"/>
+                <Label Content="Wyrożnienie" FontSize="12" Margin="5,0,5,0" Grid.Column="4" />
+            </Grid>
+        </Border>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+            <ListView
+                x:Name="flawsPanel"
+                AllowDrop="True"
+                Drop="Flaw_Drop"
+                DragOver="Flaw_Drag"
+                VerticalAlignment="Top" 
+                
+                Background="Wheat"
+                ItemsSource="{Binding Path=Flaws}">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Usuń" Command="local:CustomCommands.RemoveFlaw">
+                            <MenuItem.CommandBindings>
+                                <CommandBinding Command="local:CustomCommands.RemoveFlaw" CanExecute="RemoveFlaw_CanExecute" Executed="RemoveFlaw_Executed"/>
+                            </MenuItem.CommandBindings>
+                        </MenuItem>
+                        <MenuItem Header="Wstaw" Command="local:CustomCommands.InsertFlaw">
+                            <MenuItem.CommandBindings>
+                                <CommandBinding Command="local:CustomCommands.InsertFlaw" CanExecute="InsertFlaw_CanExecute" Executed="InsertFlaw_Executed"/>
+                            </MenuItem.CommandBindings>
+                        </MenuItem>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

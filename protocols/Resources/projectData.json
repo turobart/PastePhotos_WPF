@@ -1,0 +1,17 @@
+{
+  "protocolDefault": {
+    "maxFlawLevel": 3,
+    "flawsTopText": [
+      "1 - pierwszy stopieñ pilnoœci",
+      "2 - drugi stopieñ pilnoœci",
+      "3 - trzeci stopieñ pilnoœci",
+      "(zalecane roboty do wykonania w pierwszej kolejnoœci)",
+      "(zalecane roboty do wykonania w terminie do nastêpnej kontroli obiektu)",
+      "(zalecane roboty do wykonania do nastêpnego przegl¹du 5 letniego)"
+    ]
+  },
+  "protocolAmbassy": {
+    "maxFlawLevel": 4,
+    "flawsTopText": ["I stopieñ pilnoœci", "II stopieñ pilnoœci", "III stopieñ pilnoœci", "IV stopieñ pilnoœci" ]
+  }
+}
